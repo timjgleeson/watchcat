@@ -4,6 +4,7 @@ Watchmen::Application.routes.draw do
   resources :watchers
 
   get "auth/login"
+  get "auth/logout"
   get "auth/callback"
 
   get "dashboard" => 'dashboard#index'

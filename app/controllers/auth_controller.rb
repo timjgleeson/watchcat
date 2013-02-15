@@ -1,14 +1,20 @@
 class AuthController < ApplicationController
   def login
-    github = Github.new :client_id => '67571272d259e02785b1', :client_secret => '2150317f07f6517f1cf6e847b5c51c70df5a6105'
-    address = github.authorize_url :redirect_uri => 'http://watchmen.dev/auth/callback', :scope => 'repo'
+    github = Github.new :client_id => ENV['GITHUB_ID'], :client_secret => ENV['GITHUB_SECRET']
+    address = github.authorize_url :redirect_uri => ENV['GITHUB_URL'], :scope => 'repo'
     redirect_to address
   end
 
+  def logout
+    cookies.delete :token
+    redirect_to root_path
+  end
+
   def callback
-    github = Github.new :client_id => '67571272d259e02785b1', :client_secret => '2150317f07f6517f1cf6e847b5c51c70df5a6105'
+    github = Github.new :client_id => ENV['GITHUB_ID'], :client_secret => ENV['GITHUB_SECRET']
     status = params['error'] || 'success'
     authorization_code = params['code'] || nil
+
     if status == 'success' && authorization_code != nil
       access_token = github.get_token authorization_code
       token = access_token.token
