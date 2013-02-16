@@ -1,4 +1,4 @@
-Watchmen::Application.routes.draw do
+Watchcat::Application.routes.draw do
   get "welcome/index"
 
   resources :watchers

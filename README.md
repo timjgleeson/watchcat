@@ -1,9 +1,11 @@
-watchmen
+watchcat
 ========
 
-Who watches the watchmen
+Who watches the watchcat
+
 
 Setting up development environment
+==================================
 
 1. Register a new application - https://github.com/settings/applications/new
 2. touch .env
