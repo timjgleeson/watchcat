@@ -16,11 +16,11 @@ ActiveRecord::Schema.define(:version => 20130215223105) do
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "name"
-    t.integer  "github_id",  :limit => 255
     t.string   "avatar_url"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "token"
+    t.integer  "github_id"
   end
 
   create_table "watchers", :force => true do |t|
