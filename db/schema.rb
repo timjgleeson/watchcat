@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130215092924) do
+ActiveRecord::Schema.define(:version => 20130215223105) do
 
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "name"
-    t.string   "github_id"
+    t.integer  "github_id",  :limit => 255
     t.string   "avatar_url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.string   "token"
   end
 
