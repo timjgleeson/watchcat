@@ -13,3 +13,4 @@ Setting up development environment
 GITHUB_ID=github_id
 GITHUB_SECRET=github_secret
 GITHUB_URL=github_callback_url
+RAILS_SECRET=anything_its_a_secret
