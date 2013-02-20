@@ -12,6 +12,7 @@ class AuthController < ApplicationController
 
   def callback
     github = Github.new :client_id => ENV['GITHUB_ID'], :client_secret => ENV['GITHUB_SECRET']
+    
     status = params['error'] || 'success'
     authorization_code = params['code'] || nil
 
@@ -29,5 +30,17 @@ class AuthController < ApplicationController
     else
       redirect_to root_path
     end
+  end
+
+  def repositories
+    render json: Auth.repositories(cookies[:token])
+  end
+
+  def branches
+    render json: Auth.branches(cookies[:token], params[:username], params[:repository])
+  end
+
+  def repositories_and_branches
+    render json: Auth.repositories_and_branches(cookies[:token], params[:username])
   end
 end

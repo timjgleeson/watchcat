@@ -1,5 +1,7 @@
 class Watcher < ActiveRecord::Base
-  attr_accessible :id, :username, :repository, :branch
+  attr_accessible :id, :user_id, :username, :repository, :branch
+
+  belongs_to :user
 
   def self.watching
     require "base64"

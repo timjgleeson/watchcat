@@ -6,6 +6,9 @@ Watchcat::Application.routes.draw do
   get "auth/login"
   get "auth/logout"
   get "auth/callback"
+  get "auth/repositories"
+  get "auth/branches"
+  get "auth/repositories_and_branches"
 
   get "dashboard" => 'dashboard#index'
 

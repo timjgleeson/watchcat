@@ -1,25 +1,37 @@
 <h1><%= @user.username %>'s repos</h1>
 <p><%= link_to 'Logout', auth_logout_path %></p>
+<p>Watch three of your branches.</p>
 <ul>
-  <% @repositories.each do |repository| %>
+  <% @user.watchers.each do |watcher| %>
     <li>
-      <h2><%= repository["name"] %></h2>
-      <span>Branches</span>
-      <ul>
-        <% repository["branches"].each do |branch| %>
-
-
-          <li>
-            <%= branch[0]["name"] %> - 
-            <% watcher = Watcher.where(:username => @user.username, :repository => repository["name"], :branch => branch[0]["name"]).limit(1) %>
-            <% if watcher.empty? %>
-              <%= link_to "Watch?", watchers_path( :watcher => {:username => @user.username, :repository => repository["name"], :branch => branch[0]["name"] } ), :method => :post %>
-            <% else %>
-              <%= link_to "Unwatch?", watcher_path( :id => watcher[0][:id] ), :method => :delete %>
-            <% end %>
-          </li>
+      <% if watcher.branch.nil? && watcher.branch.nil? && watcher.branch.nil? %>
+        <h2>Add Github Repository and Branch details</h2>
+        <%= form_for watcher do |f| %>
+          <div>
+            <%= f.label :username %>
+            <%= f.text_field :username %>
+          </div>
+          <div>
+            <%= f.label :repository %>
+            <%= f.text_field :repository %>
+          </div>
+          <div>
+            <%= f.label :branch %>
+            <%= f.text_field :branch %>
+          </div>
+          <%= f.submit "Update" %>
         <% end %>
-      </ul>
+      <% else %>
+        <dl>
+          <dt>Username</dt>
+          <dd><%= watcher.username %>
+          <dt>Repository</dt>
+          <dd><%= watcher.repository %>
+          <dt>Branch</dt>
+          <dd><%= watcher.branch %>
+        </dl>
+        <p><a href="#edit-<%= watcher.id %>">Edit</a></p>
+      <% end %>
     </li>
   <% end %>
 </ul>
