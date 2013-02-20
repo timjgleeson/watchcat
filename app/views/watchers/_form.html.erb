@@ -1,0 +1,16 @@
+<h2>Add Github Repository and Branch details</h2>
+<%= form_for item do |f| %>
+  <div>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+  <div>
+    <%= f.label :repository %>
+    <%= f.text_field :repository %>
+  </div>
+  <div>
+    <%= f.label :branch %>
+    <%= f.text_field :branch %>
+  </div>
+  <%= f.submit "Update" %>
+<% end %>

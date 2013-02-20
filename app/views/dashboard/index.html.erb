@@ -3,34 +3,16 @@
 <p>Watch three of your branches.</p>
 <ul>
   <% @user.watchers.each do |watcher| %>
+    <% @watcher = watcher %>
     <li>
       <% if watcher.branch.nil? && watcher.branch.nil? && watcher.branch.nil? %>
-        <h2>Add Github Repository and Branch details</h2>
-        <%= form_for watcher do |f| %>
-          <div>
-            <%= f.label :username %>
-            <%= f.text_field :username %>
-          </div>
-          <div>
-            <%= f.label :repository %>
-            <%= f.text_field :repository %>
-          </div>
-          <div>
-            <%= f.label :branch %>
-            <%= f.text_field :branch %>
-          </div>
-          <%= f.submit "Update" %>
-        <% end %>
+        <%= render :partial => "watchers/form", :locals => {:item => @watcher} %>
       <% else %>
-        <dl>
-          <dt>Username</dt>
-          <dd><%= watcher.username %>
-          <dt>Repository</dt>
-          <dd><%= watcher.repository %>
-          <dt>Branch</dt>
-          <dd><%= watcher.branch %>
-        </dl>
-        <p><a href="#edit-<%= watcher.id %>">Edit</a></p>
+        <% if @edit == watcher.id %>
+          <%= render :partial => "watchers/form", :locals => {:item => @watcher} %>
+        <% else %>
+          <%= render :partial => "watchers/item", :locals => {:item => @watcher} %>
+        <% end %>
       <% end %>
     </li>
   <% end %>
