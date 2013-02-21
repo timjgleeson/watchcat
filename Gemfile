@@ -25,8 +25,6 @@ gem 'jquery-rails'
 
 gem 'github_api'
 
-gem 'whenever'
-
 gem 'dotenv', :groups => [:development, :test]
 
 gem 'google-analytics-rails'
