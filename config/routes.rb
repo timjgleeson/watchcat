@@ -1,8 +1,7 @@
 Watchcat::Application.routes.draw do
   get "welcome/index"
 
-  put "watchers/:id" => "watchers#update"
-  delete "watchers/:id" => "watchers#destroy"
+  resources :watchers, :only => [:index, :update, :destroy]
 
   get "auth/login"
   get "auth/logout"

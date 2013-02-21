@@ -23,7 +23,7 @@ class AuthController < ApplicationController
 
       github = Github.new :oauth_token => cookies[:token]
       github_user = github.users.get
-      user = User.find_or_initialize_by_github_id(github_user.id)
+      user = User.find_or_create_by_github_id(github_user.id)
       user.update_attributes :username => github_user.login, :name => github_user.name, :github_id => github_user.id, :avatar_url => github_user.avatar_url, :token => token
 
       redirect_to dashboard_path
